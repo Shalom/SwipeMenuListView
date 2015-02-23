@@ -57,6 +57,10 @@ public class SwipeMenuListView extends ListView {
 		mTouchState = TOUCH_STATE_NONE;
 	}
 
+	public boolean isMenuOpen() {
+		return mTouchView != null && mTouchView.isOpen();
+	}
+
 	@Override
 	public void setAdapter(ListAdapter adapter) {
 		super.setAdapter(new SwipeMenuAdapter(getContext(), adapter) {
@@ -130,7 +134,12 @@ public class SwipeMenuListView extends ListView {
 			if (mTouchView != null && mTouchView.isOpen()) {
 				mTouchView.smoothCloseMenu();
 				mTouchView = null;
-				return super.onTouchEvent(ev);
+				// try to cancel the touch event
+				MotionEvent cancelEvent = MotionEvent.obtain(ev);
+				cancelEvent.setAction(MotionEvent.ACTION_CANCEL);
+				onTouchEvent(cancelEvent);
+				cancelEvent.recycle();
+				return true;
 			}
 			if (view instanceof SwipeMenuLayout) {
 				mTouchView = (SwipeMenuLayout) view;

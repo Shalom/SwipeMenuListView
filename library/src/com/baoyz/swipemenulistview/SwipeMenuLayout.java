@@ -10,8 +10,6 @@ import android.view.GestureDetector.OnGestureListener;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.view.animation.Interpolator;
 import android.widget.AbsListView;
 import android.widget.FrameLayout;
@@ -123,9 +121,12 @@ public class SwipeMenuLayout extends FrameLayout {
 			mOpenScroller = ScrollerCompat.create(getContext());
 		}
 
-		LayoutParams contentParams = new LayoutParams(
-				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-		mContentView.setLayoutParams(contentParams);
+		// Commented out not to effect any row layout definitions in the 
+		// decorated content view.
+		// LayoutParams contentParams = new LayoutParams(
+		//   LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+		// mContentView.setLayoutParams(contentParams);
+
 		if (mContentView.getId() < 1) {
 			mContentView.setId(CONTENT_VIEW_ID);
 		}
