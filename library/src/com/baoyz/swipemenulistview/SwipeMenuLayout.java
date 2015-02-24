@@ -263,6 +263,13 @@ public class SwipeMenuLayout extends FrameLayout {
 		}
 	}
 
+	public void setContentView(View contentView) {
+		removeView(mContentView);
+		addView(contentView, 0);
+		this.mContentView = contentView;
+		invalidate();
+	}
+
 	public View getContentView() {
 		return mContentView;
 	}
