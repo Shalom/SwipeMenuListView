@@ -38,6 +38,12 @@ public class SwipeMenuView extends LinearLayout implements OnClickListener {
 		List<SwipeMenuItem> items = menu.getMenuItems();
 		int id = 0;
 		for (SwipeMenuItem item : items) {
+			// Use the item's ID if exists. Otherwise, use a generated ID.
+			// There is no guarantee that menu items will have unique IDs. It's up to
+			// the caller that creates those menu items to provide them with an ID.
+			if (item.getId() != -1) {
+				id = item.getId();
+			}
 			addItem(item, id++);
 		}
 	}
