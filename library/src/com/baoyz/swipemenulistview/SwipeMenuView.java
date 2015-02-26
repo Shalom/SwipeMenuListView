@@ -2,6 +2,7 @@ package com.baoyz.swipemenulistview;
 
 import java.util.List;
 
+import android.graphics.Typeface;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
@@ -11,10 +12,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 /**
- * 
  * @author baoyz
  * @date 2014-8-23
- * 
  */
 public class SwipeMenuView extends LinearLayout implements OnClickListener {
 
@@ -44,8 +43,7 @@ public class SwipeMenuView extends LinearLayout implements OnClickListener {
 	}
 
 	private void addItem(SwipeMenuItem item, int id) {
-		LayoutParams params = new LayoutParams(item.getWidth(),
-				LayoutParams.MATCH_PARENT);
+		LayoutParams params = new LayoutParams(item.getWidth(), LayoutParams.MATCH_PARENT);
 		LinearLayout parent = new LinearLayout(getContext());
 		parent.setId(id);
 		parent.setGravity(Gravity.CENTER);
@@ -74,8 +72,18 @@ public class SwipeMenuView extends LinearLayout implements OnClickListener {
 		TextView tv = new TextView(getContext());
 		tv.setText(item.getTitle());
 		tv.setGravity(Gravity.CENTER);
-		tv.setTextSize(item.getTitleSize());
-		tv.setTextColor(item.getTitleColor());
+		int titleSize = item.getTitleSize();
+		if (titleSize > 0) {
+			tv.setTextSize(titleSize);
+		}
+		int titleColor = item.getTitleColor();
+		if (titleColor != 0) {
+			tv.setTextColor(titleColor);
+		}
+		Typeface typeface = item.getTypeface();
+		if (typeface != null) {
+			tv.setTypeface(typeface);
+		}
 		return tv;
 	}
 

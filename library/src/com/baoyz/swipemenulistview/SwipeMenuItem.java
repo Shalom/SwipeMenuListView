@@ -1,14 +1,12 @@
 package com.baoyz.swipemenulistview;
 
-
 import android.content.Context;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 
 /**
- * 
  * @author baoyz
  * @date 2014-8-23
- * 
  */
 public class SwipeMenuItem {
 
@@ -20,9 +18,15 @@ public class SwipeMenuItem {
 	private int titleColor;
 	private int titleSize;
 	private int width;
+	private Typeface mTypeface;
 
 	public SwipeMenuItem(Context context) {
 		mContext = context;
+	}
+
+	public SwipeMenuItem(Context context, Typeface typeface) {
+		this.mContext = context;
+		this.mTypeface = typeface;
 	}
 
 	public int getId() {
@@ -71,6 +75,14 @@ public class SwipeMenuItem {
 
 	public void setIcon(int resId) {
 		this.icon = mContext.getResources().getDrawable(resId);
+	}
+
+	public void setTypeface(Typeface typeface) {
+		this.mTypeface = typeface;
+	}
+
+	public Typeface getTypeface() {
+		return mTypeface;
 	}
 
 	public Drawable getBackground() {
